@@ -3,38 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>渊渟集团 | 不追风口，深挖一井</title>
-    <meta name="description" content="渊渟集团官方网站 - 不追风口，不抢赛道，深挖一井，静待花开">
+    <title>渊渟集团 | Yuan Ting Group</title>
+    <meta name="description" content="渊渟集团 - 不追风口，深挖一井">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
-                        display: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'Noto Sans SC', 'system-ui', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            50: '#faf8f5',
-                            100: '#f5f0e8',
-                            200: '#e8dcc8',
-                            300: '#d4c4a8',
-                            400: '#b8a080',
-                            500: '#a08060',
-                            600: '#8b6b4a',
-                            700: '#6b4f35',
-                            800: '#4a3625',
-                            900: '#2d2015',
-                        },
-                        accent: {
-                            50: '#fdf4f0',
-                            100: '#fbe8e0',
-                            500: '#e07a5f',
-                            600: '#d46042',
+                        apple: {
+                            black: '#000000',
+                            dark: '#0a0a0a',
+                            gray: '#1d1d1f',
+                            light: '#86868b',
+                            white: '#f5f5f7',
+                            purple: '#a855f7',
+                            blue: '#2997ff',
                         }
                     }
                 }
@@ -42,477 +32,524 @@
         }
     </script>
     <style>
-        * { scroll-behavior: smooth; }
-        
-        /* Grain texture overlay */
-        .grain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box;
         }
         
-        /* Elegant shadows */
-        .shadow-soft {
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08),
-                        0 2px 8px -1px rgba(0, 0, 0, 0.04);
+        html { 
+            scroll-behavior: smooth;
         }
         
-        .shadow-hover {
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15),
-                        0 8px 16px -4px rgba(0, 0, 0, 0.08);
+        body { 
+            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+            background: #000;
+            color: #f5f5f7;
+            overflow-x: hidden;
         }
         
-        /* Card hover */
-        .card-elegant {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-elegant:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.12);
-        }
-        
-        /* Button styles */
-        .btn-elegant {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .btn-elegant::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        .btn-elegant:hover::before {
-            left: 100%;
-        }
-        .btn-elegant:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.2);
+        /* Typography */
+        .text-hero {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
         }
         
-        /* Reveal animation */
-        .reveal {
+        .text-section {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        
+        .text-subsection {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        
+        .text-body {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: #86868b;
+        }
+        
+        /* Animations */
+        .fade-up {
             opacity: 0;
             transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .reveal.active {
+        
+        .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        /* Line decoration */
-        .line-deco {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, #d4c4a8, #e07a5f);
+        .fade-up.delay-1 { transition-delay: 0.1s; }
+        .fade-up.delay-2 { transition-delay: 0.2s; }
+        .fade-up.delay-3 { transition-delay: 0.3s; }
+        .fade-up.delay-4 { transition-delay: 0.4s; }
+        
+        /* Glass morphism */
+        .glass {
+            background: rgba(29, 29, 31, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
         }
         
-        /* Team card */
-        .team-card {
-            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
-            border: 1px solid rgba(212, 196, 168, 0.3);
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #f5f5f7 0%, #a855f7 50%, #2997ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Button styles */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 28px;
+            background: #f5f5f7;
+            color: #000;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 980px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(245, 245, 247, 0.3);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 28px;
+            border: 1px solid rgba(245, 245, 247, 0.3);
+            color: #2997ff;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 980px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(41, 151, 255, 0.1);
+            border-color: #2997ff;
+        }
+        
+        /* Card hover */
+        .card-hover {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Section backgrounds */
+        .bg-gradient-hero {
+            background: radial-gradient(ellipse at 50% 0%, #1d1d1f 0%, #000 50%);
+        }
+        
+        .bg-gradient-section {
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+        }
+        
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+        
+        /* Glow effect */
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
         
         /* Table styling */
-        .table-elegant {
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-        .table-elegant th,
-        .table-elegant td {
-            border-bottom: 1px solid #e8dcc8;
-            padding: 1.25rem 1.5rem;
-        }
-        .table-elegant th {
-            background: #faf8f5;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.75rem;
-        }
-        .table-elegant tr:hover td {
-            background: #faf8f5;
+        .table-apple {
+            width: 100%;
+            border-collapse: collapse;
         }
         
-        /* Navigation link hover */
+        .table-apple th,
+        .table-apple td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .table-apple th {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #86868b;
+        }
+        
+        .table-apple td {
+            font-size: 15px;
+        }
+        
+        /* Nav link */
         .nav-link {
-            position: relative;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            transition: color 0.3s ease;
+            text-decoration: none;
         }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #e07a5f;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
+        
+        .nav-link:hover {
+            color: #fff;
         }
         
         /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
+        
         ::-webkit-scrollbar-track {
-            background: #faf8f5;
+            background: #000;
         }
+        
         ::-webkit-scrollbar-thumb {
-            background: #d4c4a8;
+            background: #333;
             border-radius: 4px;
         }
         
-        /* Quote styling */
-        .quote-mark {
-            font-family: 'Playfair Display', serif;
-            font-size: 6rem;
-            line-height: 1;
-            color: #e8dcc8;
-            position: absolute;
-            top: -1rem;
-            left: -1rem;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
         }
     </style>
 </head>
-<body class="bg-brand-50 text-brand-900 antialiased">
-
-    <!-- Grain Overlay -->
-    <div class="grain"></div>
+<body>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-50/90 backdrop-blur-md border-b border-brand-200/50">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="font-display text-2xl font-semibold text-brand-800 tracking-tight">
-                    渊渟
-                </a>
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex items-center justify-between h-14">
+                <a href="#" class="text-xl font-semibold tracking-tight">渊渟集团</a>
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="#about" class="nav-link text-sm text-brand-600 hover:text-brand-900 transition">理念</a>
-                    <a href="#team" class="nav-link text-sm text-brand-600 hover:text-brand-900 transition">团队</a>
-                    <a href="#products" class="nav-link text-sm text-brand-600 hover:text-brand-900 transition">产品</a>
+                    <a href="#philosophy" class="nav-link">理念</a>
+                    <a href="#team" class="nav-link">团队</a>
+                    <a href="#products" class="nav-link">产品</a>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-brand-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-50 border-t border-brand-200/50">
-            <div class="px-6 py-4 space-y-3">
-                <a href="#about" class="block py-2 text-brand-600">理念</a>
-                <a href="#team" class="block py-2 text-brand-600">团队</a>
-                <a href="#products" class="block py-2 text-brand-600">产品</a>
+                <a href="#products" class="btn-primary text-xs py-2 px-5 hidden sm:flex">
+                    了解更多
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 pb-16 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute top-1/4 right-0 w-96 h-96 bg-brand-200/30 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-1/4 left-0 w-72 h-72 bg-accent-100/40 rounded-full blur-3xl"></div>
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-hero pt-14 overflow-hidden">
+        <!-- Glow effects -->
+        <div class="glow top-1/4 left-1/2 -translate-x-1/2"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
         
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <p class="text-accent-600 text-sm tracking-[0.3em] uppercase mb-8 reveal">Yuan Ting Group</p>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <p class="text-apple-light text-sm font-medium tracking-widest uppercase mb-6 fade-up">
+                Yuan Ting Group
+            </p>
             
-            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-brand-900 mb-8 reveal">
+            <h1 class="text-hero mb-6 fade-up delay-1">
                 渊渟集团
             </h1>
             
-            <div class="line-deco mx-auto mb-8 reveal"></div>
-            
-            <p class="font-display text-xl md:text-2xl text-brand-700 mb-4 reveal">
-                不追风口，不抢赛道，深挖一井，静待花开
+            <p class="text-2xl md:text-3xl font-light text-white/90 mb-4 fade-up delay-2">
+                不追风口，深挖一井
             </p>
             
-            <p class="text-brand-500 max-w-xl mx-auto mb-12 leading-relaxed reveal">
-                我们相信成功从优雅地失败开始。一个允许失败的环境，才能孕育真正的创新。
+            <p class="text-apple-light text-lg max-w-2xl mx-auto mb-12 fade-up delay-3">
+                我们相信成功从优雅地失败开始。<br class="hidden md:block">
+                一个允许失败的环境，才能孕育真正的创新。
             </p>
             
-            <a href="#about" class="btn-elegant inline-flex items-center px-8 py-4 bg-brand-800 text-brand-50 text-sm tracking-wider uppercase">
-                探索更多
-                <svg class="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </a>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up delay-4">
+                <a href="#philosophy" class="btn-primary">
+                    探索更多
+                </a>
+                <a href="#products" class="btn-secondary">
+                    了解产品 →
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7-7-7"></path>
+            </svg>
         </div>
     </section>
+
+    <div class="divider"></div>
 
     <!-- Philosophy Section -->
-    <section id="about" class="py-24 md:py-32 bg-white">
+    <section id="philosophy" class="py-32 md:py-40 bg-gradient-section">
         <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-20 reveal">
-                <p class="text-accent-600 text-sm tracking-[0.2em] uppercase mb-4">Philosophy</p>
-                <h2 class="font-display text-4xl md:text-5xl text-brand-900 mb-6">核心理念</h2>
-                <div class="line-deco mx-auto"></div>
+            <div class="text-center mb-20">
+                <p class="text-apple-purple text-sm font-medium tracking-widest uppercase mb-4 fade-up">Philosophy</p>
+                <h2 class="text-section mb-6 fade-up delay-1">核心理念</h2>
             </div>
             
-            <div class="relative bg-brand-50 p-8 md:p-16 mb-20 reveal">
-                <span class="quote-mark">"""</span>
-                <p class="font-display text-2xl md:text-3xl lg:text-4xl text-brand-800 text-center relative z-10 leading-relaxed">
-                    想要成功，先学会优雅地失败
+            <div class="text-center mb-32">
+                <p class="text-3xl md:text-4xl font-light text-white leading-relaxed mb-8 fade-up">
+                    "想要成功，<br class="md:hidden">先学会优雅地失败"
                 </p>
                 
-                <p class="text-brand-500 text-center mt-8 max-w-2xl mx-auto">
-                    失败不是成功的对立面，而是成功的必经阶段。"亏损"是学费，关键是要亏得有价值、有复盘、有沉淀。
+                <p class="text-apple-light text-lg max-w-2xl mx-auto fade-up delay-1">
+                    失败不是成功的对立面，而是成功的必经阶段。
+                    "亏损"是学费，关键是要亏得有价值、有复盘、有沉淀。
                 </p>
             </div>
-            
-            <!-- Comparison Table -->
-            <div class="mb-20 reveal">
-                <h3 class="text-center text-sm tracking-[0.2em] uppercase text-brand-400 mb-10">反常识管理</h3>
-                
-                <div class="overflow-x-auto">
-                    <table class="table-elegant w-full text-sm">
-                        <thead>
-                            <tr>
-                                <th class="text-left text-brand-400">传统公司</th>
-                                <th class="text-center text-brand-800">渊渟集团</th>
-                                <th class="text-left text-brand-400">背后的逻辑</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-brand-700">
-                            <tr>
-                                <td>KPI驱动</td>
-                                <td class="text-center font-medium text-brand-900">"别太累，差不多就行"</td>
-                                <td class="text-brand-500">过度量化会扭曲行为</td>
-                            </tr>
-                            <tr>
-                                <td>996福报</td>
-                                <td class="text-center font-medium text-brand-900">到点赶人下班</td>
-                                <td class="text-brand-500">疲惫的大脑只能产出垃圾</td>
-                            </tr>
-                            <tr>
-                                <td>降本增效</td>
-                                <td class="text-center font-medium text-brand-900">增本降效</td>
-                                <td class="text-brand-500">无聊时的创造才是真创造</td>
-                            </tr>
-                            <tr>
-                                <td>结果导向</td>
-                                <td class="text-center font-medium text-brand-900">过程体验导向</td>
-                                <td class="text-brand-500">体验好了，结果自然不差</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+            <!-- Four Absolutes Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 rounded-2xl overflow-hidden">
+                <div class="bg-apple-dark p-10 md:p-12 fade-up">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">不催进度</h3>
+                    <p class="text-apple-light">了解进展和阻碍，但不施加压力</p>
                 </div>
-            </div>
-            
-            <!-- Four Absolutes -->
-            <div class="reveal">
-                <h3 class="text-center text-sm tracking-[0.2em] uppercase text-brand-400 mb-12">四个绝对</h3>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-8 shadow-soft card-elegant border-t-2 border-brand-300">
-                        <div class="w-10 h-10 bg-brand-100 flex items-center justify-center mb-6">
-                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h4 class="font-medium text-brand-900 mb-2">不催进度</h4>
-                        <p class="text-sm text-brand-500">了解进展和阻碍，但不施加压力</p>
+                <div class="bg-apple-dark p-10 md:p-12 fade-up delay-1">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
                     </div>
-                    
-                    <div class="bg-white p-8 shadow-soft card-elegant border-t-2 border-brand-300">
-                        <div class="w-10 h-10 bg-brand-100 flex items-center justify-center mb-6">
-                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                        </div>
-                        <h4 class="font-medium text-brand-900 mb-2">超配资源</h4>
-                        <p class="text-sm text-brand-500">让团队无聊到只能创新</p>
+                    <h3 class="text-xl font-semibold mb-2">超配资源</h3>
+                    <p class="text-apple-light">让团队无聊到只能创新</p>
+                </div>
+                
+                <div class="bg-apple-dark p-10 md:p-12 fade-up delay-2">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
                     </div>
-                    
-                    <div class="bg-white p-8 shadow-soft card-elegant border-t-2 border-accent-500">
-                        <div class="w-10 h-10 bg-accent-50 flex items-center justify-center mb-6">
-                            <svg class="w-5 h-5 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                        </div>
-                        <h4 class="font-medium text-brand-900 mb-2">绝对权力</h4>
-                        <p class="text-sm text-brand-500">专业的人做专业决策，不干涉</p>
+                    <h3 class="text-xl font-semibold mb-2">绝对权力</h3>
+                    <p class="text-apple-light">专业的人做专业决策，不干涉</p>
+                </div>
+                
+                <div class="bg-apple-dark p-10 md:p-12 fade-up delay-3">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                        </svg>
                     </div>
-                    
-                    <div class="bg-white p-8 shadow-soft card-elegant border-t-2 border-brand-300">
-                        <div class="w-10 h-10 bg-brand-100 flex items-center justify-center mb-6">
-                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
-                            </svg>
-                        </div>
-                        <h4 class="font-medium text-brand-900 mb-2">TDD优先</h4>
-                        <p class="text-sm text-brand-500">测试先行，质量是团队的尊严</p>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-2">TDD优先</h3>
+                    <p class="text-apple-light">测试先行，质量是团队的尊严</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="divider"></div>
+
+    <!-- Comparison Section -->
+    <section class="py-32 md:py-40 bg-black">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-apple-light text-sm font-medium tracking-widest uppercase mb-4 fade-up">Difference</p>
+                <h2 class="text-section fade-up delay-1">反常识管理</h2>
+            </div>
+            
+            <div class="overflow-x-auto fade-up delay-2">
+                <table class="table-apple">
+                    <thead>
+                        <tr>
+                            <th>传统公司</th>
+                            <th class="text-white">渊渟集团</th>
+                            <th>背后的逻辑</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-apple-light">
+                        <tr class="hover:bg-white/5 transition">
+                            <td>KPI驱动</td>
+                            <td class="text-white font-medium">"别太累，差不多就行"</td>
+                            <td class="text-apple-light/70">过度量化会扭曲行为</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td>996福报</td>
+                            <td class="text-white font-medium">到点赶人下班</td>
+                            <td class="text-apple-light/70">疲惫的大脑只能产出垃圾</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td>降本增效</td>
+                            <td class="text-white font-medium">增本降效</td>
+                            <td class="text-apple-light/70">无聊时的创造才是真创造</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td>结果导向</td>
+                            <td class="text-white font-medium">过程体验导向</td>
+                            <td class="text-apple-light/70">体验好了，结果自然不差</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
 
     <!-- Team Section -->
-    <section id="team" class="py-24 md:py-32 bg-brand-50">
+    <section id="team" class="py-32 md:py-40 bg-gradient-section">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-20 reveal">
-                <p class="text-accent-600 text-sm tracking-[0.2em] uppercase mb-4">Our Team</p>
-                <h2 class="font-display text-4xl md:text-5xl text-brand-900 mb-6">我们的团队</h2>
-                <div class="line-deco mx-auto mb-6"></div>
-                <p class="text-brand-500">四个有趣的灵魂，一个共同的目标</p>
+            <div class="text-center mb-20">
+                <p class="text-apple-purple text-sm font-medium tracking-widest uppercase mb-4 fade-up">Our Team</p>
+                <h2 class="text-section mb-6 fade-up delay-1">核心团队</h2>
+                <p class="text-apple-light text-lg fade-up delay-2">四个有趣的灵魂，一个共同的目标</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Kuizong -->
-                <div class="team-card shadow-soft card-elegant p-8 text-center reveal">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-200 to-brand-300 rounded-full flex items-center justify-center text-3xl">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Member 1 -->
+                <div class="bg-apple-gray rounded-2xl p-8 card-hover fade-up">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl mb-6">
                         🎲
                     </div>
-                    <h3 class="font-display text-xl text-brand-900 mb-1">亏总</h3>
-                    <p class="text-sm text-brand-400 mb-4">韦拙</p>
+                    <h3 class="text-xl font-semibold mb-1">亏总</h3>
+                    <p class="text-apple-light text-sm mb-4">韦拙</p>
                     
-                    <span class="inline-block px-3 py-1 bg-brand-800 text-brand-50 text-xs tracking-wider mb-4">战略总监</span>
+                    <span class="inline-block px-3 py-1 bg-white/10 rounded-full text-xs mb-4">战略总监</span>
                     
-                    <p class="text-sm text-brand-600 mb-4">基础设施、复盘、流程优化</p>
-                    
-                    <div class="pt-4 border-t border-brand-200">
-                        <span class="text-xs text-brand-400">流程优化权</span>
-                    </div>
+                    <p class="text-apple-light text-sm">流程优化权</p>
                 </div>
-                
-                <!-- Mozong -->
-                <div class="team-card shadow-soft card-elegant p-8 text-center reveal" style="animation-delay: 0.1s;">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full flex items-center justify-center text-3xl">
+
+                <!-- Member 2 -->
+                <div class="bg-apple-gray rounded-2xl p-8 card-hover fade-up delay-1">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-2xl mb-6">
                         🐱
                     </div>
-                    <h3 class="font-display text-xl text-brand-900 mb-1">摸总</h3>
-                    <p class="text-sm text-brand-400 mb-4">池闲</p>
+                    <h3 class="text-xl font-semibold mb-1">摸总</h3>
+                    <p class="text-apple-light text-sm mb-4">池闲</p>
                     
-                    <span class="inline-block px-3 py-1 bg-brand-800 text-brand-50 text-xs tracking-wider mb-4">产品经理</span>
+                    <span class="inline-block px-3 py-1 bg-white/10 rounded-full text-xs mb-4">产品经理</span>
                     
-                    <p class="text-sm text-brand-600 mb-4">需求分析、PRD撰写</p>
-                    
-                    <div class="pt-4 border-t border-brand-200">
-                        <span class="text-xs text-brand-400">需求决策权</span>
-                    </div>
+                    <p class="text-apple-light text-sm">需求决策权</p>
                 </div>
-                
-                <!-- Hunzi -->
-                <div class="team-card shadow-soft card-elegant p-8 text-center reveal" style="animation-delay: 0.2s;">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full flex items-center justify-center text-3xl">
+
+                <!-- Member 3 -->
+                <div class="bg-apple-gray rounded-2xl p-8 card-hover fade-up delay-2">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center text-2xl mb-6">
                         💻
                     </div>
-                    <h3 class="font-display text-xl text-brand-900 mb-1">混子</h3>
-                    <p class="text-sm text-brand-400 mb-4">程简</p>
+                    <h3 class="text-xl font-semibold mb-1">混子</h3>
+                    <p class="text-apple-light text-sm mb-4">程简</p>
                     
-                    <span class="inline-block px-3 py-1 bg-accent-600 text-white text-xs tracking-wider mb-4">开发工程师</span>
+                    <span class="inline-block px-3 py-1 bg-apple-blue/20 text-apple-blue rounded-full text-xs mb-4">开发工程师</span>
                     
-                    <p class="text-sm text-brand-600 mb-4">技术架构、开发实现</p>
-                    
-                    <div class="pt-4 border-t border-brand-200">
-                        <span class="text-xs text-brand-400">技术决策权</span>
-                    </div>
+                    <p class="text-apple-light text-sm">技术决策权</p>
                 </div>
-                
-                <!-- Bage -->
-                <div class="team-card shadow-soft card-elegant p-8 text-center reveal" style="animation-delay: 0.3s;">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-green-200 to-green-300 rounded-full flex items-center justify-center text-3xl">
+
+                <!-- Member 4 -->
+                <div class="bg-apple-gray rounded-2xl p-8 card-hover fade-up delay-3">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-2xl mb-6">
                         🐛👑
                     </div>
-                    <h3 class="font-display text-xl text-brand-900 mb-1">八阿哥</h3>
-                    <p class="text-sm text-brand-400 mb-4">沈慎</p>
+                    <h3 class="text-xl font-semibold mb-1">八阿哥</h3>
+                    <p class="text-apple-light text-sm mb-4">沈慎</p>
                     
-                    <span class="inline-block px-3 py-1 bg-brand-800 text-brand-50 text-xs tracking-wider mb-4">测试工程师</span>
+                    <span class="inline-block px-3 py-1 bg-white/10 rounded-full text-xs mb-4">测试工程师</span>
                     
-                    <p class="text-sm text-brand-600 mb-4">质量保证、测试策略</p>
-                    
-                    <div class="pt-4 border-t border-brand-200">
-                        <span class="text-xs text-brand-400">质量决策权</span>
-                    </div>
+                    <p class="text-apple-light text-sm">质量决策权</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="divider"></div>
+
     <!-- Products Section -->
-    <section id="products" class="py-24 md:py-32 bg-white">
+    <section id="products" class="py-32 md:py-40 bg-black">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-20 reveal">
-                <p class="text-accent-600 text-sm tracking-[0.2em] uppercase mb-4">Products</p>
-                <h2 class="font-display text-4xl md:text-5xl text-brand-900 mb-6">我们的产品</h2>
-                <div class="line-deco mx-auto mb-6"></div>
-                <p class="text-brand-500">正在构建，敬请期待</p>
+            <div class="text-center mb-20">
+                <p class="text-apple-blue text-sm font-medium tracking-widest uppercase mb-4 fade-up">Products</p>
+                <h2 class="text-section mb-6 fade-up delay-1">产品与服务</h2>
+                <p class="text-apple-light text-lg fade-up delay-2">正在构建，敬请期待</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- FocusPaw -->
-                <div class="bg-brand-800 text-brand-50 p-8 card-elegant reveal">
-                    <div class="w-12 h-12 bg-brand-700 flex items-center justify-center mb-6">
+                <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl p-8 card-hover fade-up">
+                    <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center mb-6">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="font-display text-xl mb-2">FocusPaw</h3>
-                    <span class="inline-block px-2 py-0.5 bg-brand-600 text-xs mb-4">v0.1</span>
-                    <p class="text-brand-300 text-sm mb-6">渊渟集团官方网站，展示公司理念与团队文化。</p>
-                    <span class="inline-flex items-center text-sm">
+                    <h3 class="text-xl font-semibold mb-2">FocusPaw</h3>
+                    <span class="inline-block px-2 py-1 bg-white/20 rounded text-xs mb-4">v0.1</span>
+                    <p class="text-white/80 text-sm mb-6">渊渟集团官方网站</p>
+                    <span class="inline-flex items-center text-sm font-medium">
                         已上线
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </span>
                 </div>
-                
+
                 <!-- Placeholders -->
-                <div class="bg-brand-50 border border-dashed border-brand-300 p-8 flex flex-col items-center justify-center min-h-[240px] reveal">
-                    <div class="w-16 h-16 border border-brand-300 flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-apple-gray rounded-2xl p-8 flex flex-col items-center justify-center min-h-[260px] border border-white/5 fade-up delay-1">
+                    <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-apple-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                     </div>
-                    <p class="text-brand-400 text-sm">敬请期待</p>
+                    <p class="text-apple-light">敬请期待</p>
                 </div>
-                
-                <div class="bg-brand-50 border border-dashed border-brand-300 p-8 flex flex-col items-center justify-center min-h-[240px] reveal" style="animation-delay: 0.1s;">
-                    <div class="w-16 h-16 border border-brand-300 flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                <div class="bg-apple-gray rounded-2xl p-8 flex flex-col items-center justify-center min-h-[260px] border border-white/5 fade-up delay-2">
+                    <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-apple-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                     </div>
-                    <p class="text-brand-400 text-sm">敬请期待</p>
+                    <p class="text-apple-light">敬请期待</p>
                 </div>
-                
-                <div class="bg-brand-50 border border-dashed border-brand-300 p-8 flex flex-col items-center justify-center min-h-[240px] reveal" style="animation-delay: 0.2s;">
-                    <div class="w-16 h-16 border border-brand-300 flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                <div class="bg-apple-gray rounded-2xl p-8 flex flex-col items-center justify-center min-h-[260px] border border-white/5 fade-up delay-3">
+                    <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-apple-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                     </div>
-                    <p class="text-brand-400 text-sm">敬请期待</p>
+                    <p class="text-apple-light">敬请期待</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-brand-900 text-brand-300 py-16">
+    <footer class="py-16 bg-apple-dark border-t border-white/5">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center mb-12">
                 <div class="text-center md:text-left mb-8 md:mb-0">
-                    <h3 class="font-display text-3xl text-brand-100 mb-2">渊渟集团</h3>
-                    <p class="text-sm">不追风口，深挖一井</p>
+                    <h3 class="text-2xl font-semibold mb-2">渊渟集团</h3>
+                    <p class="text-apple-light">不追风口，深挖一井</p>
                 </div>
                 <a href="https://github.com/zwlcoding/FocusPaw" target="_blank" 
-                   class="inline-flex items-center px-6 py-3 border border-brand-700 hover:border-brand-500 hover:text-brand-100 transition">
+                   class="inline-flex items-center px-6 py-3 border border-white/20 rounded-full hover:border-white/40 hover:bg-white/5 transition">
                     <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                     </svg>
@@ -520,34 +557,39 @@
                 </a>
             </div>
             
-            <div class="border-t border-brand-800 pt-8 text-center">
-                <p class="text-brand-400 italic mb-2">"每一棵树，都根深叶茂。每一片叶，都向着阳光。"</p>
-                <p class="text-sm text-brand-500">&copy; 2026 渊渟集团. 保留所有权利.</p>
+            <div class="text-center">
+                <p class="text-apple-light/60 italic mb-4">"每一棵树，都根深叶茂。每一片叶，都向着阳光。"</p>
+                <p class="text-sm text-apple-light/40">© 2026 渊渟集团. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scroll Animation Script -->
     <script>
-        // Mobile menu
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-        
-        // Scroll reveal
+        // Intersection Observer for fade-up animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        // Activate hero
-        document.querySelectorAll('#about .reveal, #team .reveal, #products .reveal').forEach((el, i) => {
-            el.style.transitionDelay = `${i * 0.1}s`;
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add visible class to hero elements immediately
+        document.querySelectorAll('.fade-up').forEach((el, index) => {
+            if (index < 5) {
+                setTimeout(() => el.classList.add('visible'), index * 100);
+            }
         });
     </script>
 
