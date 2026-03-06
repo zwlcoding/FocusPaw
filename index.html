@@ -8,34 +8,122 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        * { scroll-behavior: smooth; }
         body { font-family: 'Noto Sans SC', sans-serif; }
+        .font-serif { font-family: 'Noto Serif SC', serif; }
+        
         .gradient-bg {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #020617 100%);
         }
+        
+        /* Enhanced Card Hover */
         .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
-        .scroll-smooth { scroll-behavior: smooth; }
+        
+        /* Button Micro-interactions */
+        .btn-primary {
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(255,255,255,0.3);
+        }
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Floating Animation for Hero */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Pulse Border for Placeholders */
+        .pulse-border {
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: #cbd5e1; }
+            50% { border-color: #6366f1; }
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* Team Badge Gradient */
+        .team-badge {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+        
+        /* Stagger delay utilities */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 scroll-smooth">
+<body class="bg-slate-50 text-slate-800 antialiased">
+
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="#" class="text-xl font-bold text-slate-900">渊渟集团</a>
+                <a href="#" class="font-serif text-xl font-bold gradient-text">渊渟集团</a>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-slate-600 hover:text-slate-900 transition">关于我们</a>
-                    <a href="#team" class="text-slate-600 hover:text-slate-900 transition">团队</a>
-                    <a href="#products" class="text-slate-600 hover:text-slate-900 transition">产品</a>
+                    <a href="#about" class="text-slate-600 hover:text-indigo-600 transition-colors relative group">
+                        关于我们
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#team" class="text-slate-600 hover:text-indigo-600 transition-colors relative group">
+                        团队
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#products" class="text-slate-600 hover:text-indigo-600 transition-colors relative group">
+                        产品
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                    </a>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2" aria-label="打开菜单">
+                <button id="mobile-menu-btn" class="md:hidden p-2 hover:bg-slate-100 rounded-lg transition" aria-label="打开菜单">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -45,32 +133,50 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
             <div class="px-4 py-3 space-y-2">
-                <a href="#about" class="block py-2 text-slate-600 hover:text-slate-900">关于我们</a>
-                <a href="#team" class="block py-2 text-slate-600 hover:text-slate-900">团队</a>
-                <a href="#products" class="block py-2 text-slate-600 hover:text-slate-900">产品</a>
+                <a href="#about" class="block py-2 text-slate-600 hover:text-indigo-600 transition">关于我们</a>
+                <a href="#team" class="block py-2 text-slate-600 hover:text-indigo-600 transition">团队</a>
+                <a href="#products" class="block py-2 text-slate-600 hover:text-indigo-600 transition">产品</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-bg min-h-screen flex items-center justify-center pt-16" id="hero">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+    <section class="gradient-bg min-h-screen flex items-center justify-center pt-16 relative overflow-hidden" id="hero">
+        <!-- Floating Orbs -->
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl float" style="animation-delay: -3s;"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <p class="text-indigo-400 text-sm font-medium tracking-widest uppercase mb-4 reveal">Yuan Ting Group</p>
+            
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight reveal">
                 渊渟集团
             </h1>
-            <p class="text-xl sm:text-2xl md:text-3xl text-slate-300 mb-4 font-light">
+            
+            <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mx-auto rounded-full mb-6 reveal"></div>
+            
+            <p class="text-xl sm:text-2xl md:text-3xl text-slate-300 mb-4 font-light reveal">
                 不追风口，不抢赛道，深挖一井，静待花开
             </p>
-            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            
+            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed reveal">
                 我们相信成功从优雅地失败开始。一个允许失败的环境，才能孕育真正的创新。
                 渊渟集团致力于构建可持续的创新生态。
             </p>
-            <a href="#about" class="inline-flex items-center px-8 py-3 bg-white text-slate-900 rounded-full font-medium hover:bg-slate-100 transition transform hover:scale-105">
+            
+            <a href="#about" class="btn-primary inline-flex items-center px-8 py-3 bg-white text-slate-900 rounded-full font-medium">
                 了解更多
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
             </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7-7-7"></path>
+            </svg>
         </div>
     </section>
 
@@ -78,9 +184,10 @@
     <section id="about" class="py-20 sm:py-28 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Philosophy -->
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">核心理念</h2>
-                <p class="text-2xl sm:text-3xl text-indigo-600 font-medium mb-4">
+            <div class="text-center mb-16 reveal">
+                <p class="text-indigo-600 text-sm font-semibold tracking-wider uppercase mb-3">Philosophy</p>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-6">核心理念</h2>
+                <p class="text-2xl sm:text-3xl gradient-text font-medium mb-4">
                     "想要成功，先学会优雅地失败"
                 </p>
                 <p class="text-slate-600 max-w-3xl mx-auto text-lg">
@@ -89,7 +196,7 @@
             </div>
 
             <!-- Comparison Table -->
-            <div class="mb-16">
+            <div class="mb-16 reveal">
                 <h3 class="text-2xl font-bold text-slate-900 text-center mb-8">反常识管理</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full max-w-4xl mx-auto border-collapse">
@@ -101,22 +208,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b border-slate-100">
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
                                 <td class="py-4 px-6 text-slate-700">KPI驱动</td>
                                 <td class="py-4 px-6 text-center font-medium text-slate-900">"别太累，差不多就行"</td>
                                 <td class="py-4 px-6 text-slate-500 text-sm">过度量化会扭曲行为</td>
                             </tr>
-                            <tr class="border-b border-slate-100">
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
                                 <td class="py-4 px-6 text-slate-700">996福报</td>
                                 <td class="py-4 px-6 text-center font-medium text-slate-900">到点赶人下班</td>
                                 <td class="py-4 px-6 text-slate-500 text-sm">疲惫的大脑只能产出垃圾</td>
                             </tr>
-                            <tr class="border-b border-slate-100">
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
                                 <td class="py-4 px-6 text-slate-700">降本增效</td>
                                 <td class="py-4 px-6 text-center font-medium text-slate-900">增本降效</td>
                                 <td class="py-4 px-6 text-slate-500 text-sm">无聊时的创造才是真创造</td>
                             </tr>
-                            <tr>
+                            <tr class="hover:bg-slate-50 transition">
                                 <td class="py-4 px-6 text-slate-700">结果导向</td>
                                 <td class="py-4 px-6 text-center font-medium text-slate-900">过程体验导向</td>
                                 <td class="py-4 px-6 text-slate-500 text-sm">体验好了，结果自然不差</td>
@@ -127,7 +234,7 @@
             </div>
 
             <!-- Four Absolutes -->
-            <div>
+            <div class="reveal">
                 <h3 class="text-2xl font-bold text-slate-900 text-center mb-8">四个绝对</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="bg-slate-50 rounded-xl p-6 text-center card-hover">
@@ -139,6 +246,7 @@
                         <h4 class="font-bold text-slate-900 mb-2">不催进度</h4>
                         <p class="text-sm text-slate-600">了解进展和阻碍，但不施加压力</p>
                     </div>
+                    
                     <div class="bg-slate-50 rounded-xl p-6 text-center card-hover">
                         <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,6 +256,7 @@
                         <h4 class="font-bold text-slate-900 mb-2">超配资源</h4>
                         <p class="text-sm text-slate-600">让团队无聊到只能创新</p>
                     </div>
+                    
                     <div class="bg-slate-50 rounded-xl p-6 text-center card-hover">
                         <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,6 +266,7 @@
                         <h4 class="font-bold text-slate-900 mb-2">绝对权力</h4>
                         <p class="text-sm text-slate-600">专业的人做专业决策，不干涉</p>
                     </div>
+                    
                     <div class="bg-slate-50 rounded-xl p-6 text-center card-hover">
                         <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg class="w-6 h-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,52 +284,57 @@
     <!-- Team Section -->
     <section id="team" class="py-20 sm:py-28 bg-slate-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">我们的团队</h2>
+            <div class="text-center mb-16 reveal">
+                <p class="text-indigo-600 text-sm font-semibold tracking-wider uppercase mb-3">Our Team</p>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-4">我们的团队</h2>
                 <p class="text-slate-600 text-lg max-w-2xl mx-auto">
                     四个有趣的灵魂，一个共同的目标
                 </p>
             </div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Kuizong -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
-                    <div class="text-5xl mb-4 text-center">🎲</div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">🎲</div>
                     <h3 class="text-xl font-bold text-slate-900 text-center mb-1">亏总</h3>
                     <p class="text-sm text-slate-500 text-center mb-3">韦拙</p>
-                    <p class="text-indigo-600 font-medium text-center mb-3">战略总监</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-white rounded-full team-badge mb-3">战略总监</span>
                     <p class="text-slate-600 text-sm text-center">基础设施、复盘、流程优化</p>
                     <div class="mt-4 pt-4 border-t border-slate-100">
                         <span class="block text-xs text-slate-400 text-center">绝对权力：流程优化权</span>
                     </div>
                 </div>
+                
                 <!-- Mozong -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
-                    <div class="text-5xl mb-4 text-center">🐱</div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover reveal" style="animation-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">🐱</div>
                     <h3 class="text-xl font-bold text-slate-900 text-center mb-1">摸总</h3>
                     <p class="text-sm text-slate-500 text-center mb-3">池闲</p>
-                    <p class="text-indigo-600 font-medium text-center mb-3">产品经理</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-white rounded-full team-badge mb-3">产品经理</span>
                     <p class="text-slate-600 text-sm text-center">需求分析、PRD撰写</p>
                     <div class="mt-4 pt-4 border-t border-slate-100">
                         <span class="block text-xs text-slate-400 text-center">绝对权力：需求决策权</span>
                     </div>
                 </div>
+                
                 <!-- Hunzi -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
-                    <div class="text-5xl mb-4 text-center">💻</div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover reveal" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">💻</div>
                     <h3 class="text-xl font-bold text-slate-900 text-center mb-1">混子</h3>
                     <p class="text-sm text-slate-500 text-center mb-3">程简</p>
-                    <p class="text-indigo-600 font-medium text-center mb-3">开发工程师</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-white rounded-full team-badge mb-3">开发工程师</span>
                     <p class="text-slate-600 text-sm text-center">技术架构、开发实现</p>
                     <div class="mt-4 pt-4 border-t border-slate-100">
                         <span class="block text-xs text-slate-400 text-center">绝对权力：技术决策权</span>
                     </div>
                 </div>
+                
                 <!-- Bage -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover">
-                    <div class="text-5xl mb-4 text-center">🐛👑</div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm card-hover reveal" style="animation-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">🐛👑</div>
                     <h3 class="text-xl font-bold text-slate-900 text-center mb-1">八阿哥</h3>
                     <p class="text-sm text-slate-500 text-center mb-3">沈慎</p>
-                    <p class="text-indigo-600 font-medium text-center mb-3">测试工程师</p>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold text-white rounded-full team-badge mb-3">测试工程师</span>
                     <p class="text-slate-600 text-sm text-center">质量保证、测试策略</p>
                     <div class="mt-4 pt-4 border-t border-slate-100">
                         <span class="block text-xs text-slate-400 text-center">绝对权力：质量决策权</span>
@@ -232,15 +347,17 @@
     <!-- Products Section -->
     <section id="products" class="py-20 sm:py-28 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">我们的产品</h2>
+            <div class="text-center mb-16 reveal">
+                <p class="text-indigo-600 text-sm font-semibold tracking-wider uppercase mb-3">Products</p>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-4">我们的产品</h2>
                 <p class="text-slate-600 text-lg max-w-2xl mx-auto">
                     正在构建，敬请期待
                 </p>
             </div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- FocusPaw -->
-                <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 text-white card-hover">
+                <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 text-white card-hover reveal">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -256,32 +373,35 @@
                         </svg>
                     </span>
                 </div>
+                
                 <!-- Placeholder 1 -->
-                <div class="bg-slate-100 rounded-2xl p-6 border-2 border-dashed border-slate-300 flex flex-col items-center justify-center min-h-[200px]">
-                    <div class="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center mb-3">
-                        <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-slate-100 rounded-2xl p-6 border-2 border-dashed pulse-border flex flex-col items-center justify-center min-h-[200px] reveal">
+                    <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                     </div>
-                    <p class="text-slate-400 font-medium">敬请期待</p>
+                    <p class="text-slate-500 font-medium">敬请期待</p>
                 </div>
+                
                 <!-- Placeholder 2 -->
-                <div class="bg-slate-100 rounded-2xl p-6 border-2 border-dashed border-slate-300 flex flex-col items-center justify-center min-h-[200px]">
-                    <div class="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center mb-3">
-                        <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-slate-100 rounded-2xl p-6 border-2 border-dashed pulse-border flex flex-col items-center justify-center min-h-[200px] reveal" style="animation-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                     </div>
-                    <p class="text-slate-400 font-medium">敬请期待</p>
+                    <p class="text-slate-500 font-medium">敬请期待</p>
                 </div>
+                
                 <!-- Placeholder 3 -->
-                <div class="bg-slate-100 rounded-2xl p-6 border-2 border-dashed border-slate-300 flex flex-col items-center justify-center min-h-[200px]">
-                    <div class="w-12 h-12 bg-slate-200 rounded-xl flex items-center justify-center mb-3">
-                        <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-slate-100 rounded-2xl p-6 border-2 border-dashed pulse-border flex flex-col items-center justify-center min-h-[200px] reveal" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                     </div>
-                    <p class="text-slate-400 font-medium">敬请期待</p>
+                    <p class="text-slate-500 font-medium">敬请期待</p>
                 </div>
             </div>
         </div>
@@ -291,12 +411,13 @@
     <footer class="bg-slate-900 text-slate-400 py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h3 class="text-white font-bold text-lg mb-2">渊渟集团</h3>
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h3 class="font-serif text-2xl font-bold text-white mb-2">渊渟集团</h3>
                     <p class="text-sm">不追风口，深挖一井</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="https://github.com/yuanting-group" target="_blank" rel="noopener noreferrer" class="hover:text-white transition flex items-center">
+                    <a href="https://github.com/zwlcoding/FocusPaw" target="_blank" rel="noopener noreferrer" 
+                       class="flex items-center px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                         </svg>
@@ -304,25 +425,51 @@
                     </a>
                 </div>
             </div>
-            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-sm">
-                <p>&copy; 2026 渊渟集团. 保留所有权利.</p>
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center">
+                <p class="text-sm text-slate-500 italic mb-2">"每一棵树，都根深叶茂。每一片叶，都向着阳光。"</p>
+                <p class="text-xs text-slate-600">&copy; 2026 渊渟集团. 保留所有权利.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile Menu Toggle Script -->
+    <!-- Scripts -->
     <script>
+        // Mobile Menu Toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
         
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('mobile-menu').classList.add('hidden');
             });
         });
+        
+        // Scroll Reveal Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Activate hero elements immediately
+        document.querySelectorAll('#hero .reveal').forEach((el, index) => {
+            setTimeout(() => el.classList.add('active'), index * 100);
+        });
     </script>
+
 </body>
 </html>
